@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>orb test</title>
+<style>
+  html, body { margin: 0; background: #000; height: 100%; }
+  body { display: grid; place-items: center; }
+  #orb { width: 480px; height: 480px; display: block; }
+  #info { position: fixed; left: 8px; bottom: 6px; color: #345; font: 11px monospace; }
+</style>
+</head>
+<body>
+<canvas id="orb"></canvas>
+<div id="info"></div>
+<script type="module">
+  // Query params: variant=orb_v2.js  state=idle|listening|thinking|speaking  level=0..1  anim=1  sensitivity=1
+  const q = new URLSearchParams(location.search);
+  const variant = q.get('variant') || 'orb.js';
+  const state = q.get('state') || 'idle';
+  const base = parseFloat(q.get('level') || '0');
+  const anim = q.get('anim') === '1';
+  const sens = parseFloat(q.get('sensitivity') || '1');
+  document.getElementById('info').textContent = `${variant} · ${state} · level=${base}${anim ? ' · anim' : ''}`;
+  const mod = await import('./' + variant);
+  const orb = mod.createOrb(document.getElementById('orb'), { sensitivity: sens });
+  orb.setState(state);
+  const t0 = performance.now();
+  function tick() {
+    const t = (performance.now() - t0) / 1000;
+    let level = base;
+    if (anim) level = Math.max(0, Math.min(1, base + 0.25 * Math.sin(t * 3)));
+    orb.setAudio({ level, bass: level * 0.9, mid: level * 0.7, treble: Math.max(0, level - 0.2) * 0.8 });
+    requestAnimationFrame(tick);
+  }
+  tick();
+  window.__orb = orb;
+</script>
+</body>
+</html>

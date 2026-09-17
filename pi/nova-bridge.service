@@ -1,0 +1,21 @@
+[Unit]
+Description=NOVA bridge (Pi stats, camera, pan-tilt, gestures, face tracking, Hermes TTS) on :8433
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rajarshi/nova-bridge
+# The venv (--system-site-packages) adds OpenCV for face detection on top of the system
+# picamera2 / numpy / smbus2. pi/deploy.sh creates it; without it the bridge still runs on
+# /usr/bin/python3 with the skin-chroma detector.
+ExecStart=/home/rajarshi/nova-bridge/venv/bin/python /home/rajarshi/nova-bridge/nova_bridge.py
+Restart=always
+RestartSec=2
+Environment=PYTHONUNBUFFERED=1
+Environment=LIBCAMERA_LOG_LEVELS=*:WARN
+Environment=HERMES_HOME=/home/rajarshi/.hermes
+Environment=NOVA_FACE_DETECTOR=auto
+# picamera2 stop_recording + servo release run on SIGTERM; give them a moment before SIGKILL.
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,22 @@
+[Unit]
+Description=NOVA visual dashboard for Hermes on :8420
+Wants=network-online.target
+After=network-online.target nova-bridge.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rajarshi/nova-dashboard
+ExecStart=/home/rajarshi/.hermes/node/bin/node /home/rajarshi/nova-dashboard/server.js
+Restart=always
+RestartSec=2
+Environment=HOST=0.0.0.0
+Environment=PORT=8420
+Environment=HERMES_URL=http://127.0.0.1:8642
+Environment=PI_BRIDGE_URL=http://127.0.0.1:8433
+Environment=NODE_ENV=production
+NoNewPrivileges=true
+PrivateTmp=true
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

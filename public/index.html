@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>N.O.V.A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="./styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%2338bdf8'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fff'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- Icon sprite (Lucide-style, stroke = currentColor) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-thermo" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-cloud-sun" viewBox="0 0 24 24"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></symbol>
+  <symbol id="i-cloud-moon" viewBox="0 0 24 24"><path d="M13 16a3 3 0 1 1 0 6H7a5 5 0 1 1 4.9-6Z"/><path d="M10.1 9A6 6 0 0 1 16 4a4.24 4.24 0 0 0 6 6 6 6 0 0 1-3 5.197"/></symbol>
+  <symbol id="i-cloud-fog" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 17H7"/><path d="M17 21H9"/></symbol>
+  <symbol id="i-cloud-drizzle" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M8 19v1"/><path d="M8 14v1"/><path d="M16 19v1"/><path d="M16 14v1"/><path d="M12 21v1"/><path d="M12 16v1"/></symbol>
+  <symbol id="i-cloud-rain" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></symbol>
+  <symbol id="i-cloud-snow" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M8 15h.01"/><path d="M8 19h.01"/><path d="M12 17h.01"/><path d="M12 21h.01"/><path d="M16 15h.01"/><path d="M16 19h.01"/></symbol>
+  <symbol id="i-cloud-thunder" viewBox="0 0 24 24"><path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973"/><path d="m13 12-3 5h4l-3 5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-camera-off" viewBox="0 0 24 24"><line x1="2" x2="22" y1="2" y2="22"/><path d="M7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16"/><path d="M9.5 4h5L17 7h3a2 2 0 0 1 2 2v7.5"/><path d="M14.121 15.121A3 3 0 1 1 9.88 10.88"/></symbol>
+  <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></symbol>
+  <symbol id="i-aperture" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect width="14" height="14" x="5" y="5" rx="2"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></symbol>
+  <symbol id="i-keyboard" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" ry="2"/><path d="M6 8h.001"/><path d="M10 8h.001"/><path d="M14 8h.001"/><path d="M18 8h.001"/><path d="M8 12h.001"/><path d="M12 12h.001"/><path d="M16 12h.001"/><path d="M7 16h10"/></symbol>
+  <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-chev-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+  <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-crosshair" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-loader" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+</svg>
+
+<div class="bg" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow"></div><div class="bg-vignette"></div></div>
+
+<div class="app" id="app">
+
+  <!-- ============ Top bar ============ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="wordmark" id="wordmark">N.O.V.A</div>
+      <span class="pill status offline" id="onlinePill" role="status" aria-live="polite"><span class="dot"></span><span id="onlineText">Offline</span></span>
+    </div>
+    <div class="topbar-center">
+      <span class="pill clock"><svg class="icon"><use href="#i-clock"/></svg><span class="mono" id="clockTime">--:--:-- --</span><span class="sep">|</span><span id="clockDate">—</span></span>
+    </div>
+    <div class="topbar-right">
+      <span class="pill weather" id="hdrWeather" title="Local weather"><svg class="icon"><use href="#i-thermo"/></svg><span class="mono" id="hdrTemp">--.-°C</span><span class="dim" id="hdrCity">—</span></span>
+      <button class="sq-btn" id="settingsBtn" type="button" aria-label="Settings" title="Settings"><svg class="icon"><use href="#i-gear"/></svg></button>
+    </div>
+  </header>
+
+  <main class="layout" id="layout">
+
+    <button class="edge-tab edge-left" id="edgeLeft" type="button" aria-label="Toggle left panels" title="Toggle left panels"><svg class="icon"><use href="#i-chev-left"/></svg></button>
+
+    <!-- ============ Left drawer ============ -->
+    <aside class="col col-left" id="colLeft">
+
+      <section class="panel" id="panelStats" aria-labelledby="statsTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-cpu"/></svg>
+          <h2 id="statsTitle">System Stats</h2>
+          <span class="tag" id="statsTag" title="Waiting for data">…</span>
+          <button class="icon-btn" id="statsRefresh" type="button" aria-label="Refresh system stats" title="Refresh"><svg class="icon"><use href="#i-refresh"/></svg></button>
+        </header>
+        <div class="panel-body">
+          <div class="bar-row">
+            <div class="bar-label"><span>CPU Usage</span><b class="mono" id="statCpuPct">—</b></div>
+            <div class="bar"><i id="statCpuBar" style="width:0%"></i></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label"><span>RAM Usage</span><b class="mono" id="statRamLabel">—</b></div>
+            <div class="bar"><i id="statRamBar" style="width:0%"></i></div>
+          </div>
+          <ul class="tiles" id="statsTiles" data-count="2">
+            <li class="tile"><span class="label">Memory</span><span class="value" id="tileMem">—</span></li>
+            <li class="tile"><span class="label">Disk GB</span><span class="value" id="tileDisk">—</span></li>
+            <li class="tile" id="tileTempWrap" hidden><span class="label">Temp</span><span class="value" id="tileTemp">—</span></li>
+          </ul>
+          <p class="panel-note" id="statsNote" hidden></p>
+        </div>
+      </section>
+
+      <section class="panel" id="panelUptime" aria-labelledby="uptimeTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-timer"/></svg>
+          <h2 id="uptimeTitle">System Uptime</h2>
+          <button class="icon-btn" id="uptimeExpand" type="button" aria-label="Show more uptime details" title="Details" aria-expanded="false"><svg class="icon"><use href="#i-expand"/></svg></button>
+        </header>
+        <div class="panel-body">
+          <div class="uptime-block">
+            <div class="uptime-label">System Running For:</div>
+            <div class="uptime-big mono" id="uptimeBig">00:00:00</div>
+          </div>
+          <ul class="tiles" data-count="3">
+            <li class="tile"><span class="label">Session</span><span class="value" id="tileSession">1</span></li>
+            <li class="tile"><span class="label">Commands</span><span class="value" id="tileCommands">0</span></li>
+            <li class="tile" title="Presence at the desk, from the camera"><span class="label">At desk</span><span class="value" id="tilePresence">—</span></li>
+          </ul>
+          <div class="bar-row">
+            <div class="bar-label"><span>System Load</span><span><span id="loadLabel">—</span> <b class="mono" id="loadPct">—</b></span></div>
+            <div class="bar"><i id="loadBar" style="width:0%"></i></div>
+          </div>
+          <dl class="kv" id="uptimeExtra" hidden>
+            <div><dt>Pi uptime</dt><dd class="mono" id="piUptime">—</dd></div>
+            <div><dt>Hermes</dt><dd class="mono" id="hermesVersion">—</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="panel" id="panelWeather" aria-labelledby="weatherTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-cloud"/></svg>
+          <h2 id="weatherTitle">Weather</h2>
+          <button class="icon-btn" id="weatherRefresh" type="button" aria-label="Refresh weather" title="Refresh"><svg class="icon"><use href="#i-refresh"/></svg></button>
+        </header>
+        <div class="panel-body">
+          <div class="wx-hero">
+            <div class="wx-main">
+              <div class="wx-temp" id="wxTemp">--.-°C</div>
+              <div class="wx-city" id="wxCity">Locating…</div>
+              <div class="wx-desc" id="wxDesc">waiting for weather</div>
+            </div>
+            <svg class="icon wx-icon" id="wxIcon"><use href="#i-cloud"/></svg>
+          </div>
+          <ul class="tiles" data-count="3">
+            <li class="tile"><span class="label">Humidity</span><span class="value" id="wxHumidity">—</span></li>
+            <li class="tile"><span class="label">Wind m/s</span><span class="value" id="wxWind">—</span></li>
+            <li class="tile"><span class="label">Feels Like</span><span class="value" id="wxFeels">—</span></li>
+          </ul>
+          <p class="panel-note" id="wxNote" hidden></p>
+        </div>
+      </section>
+
+      <section class="panel" id="panelCamera" aria-labelledby="cameraTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-camera"/></svg>
+          <h2 id="cameraTitle">Camera</h2>
+          <button class="icon-btn" id="camPhoto" type="button" aria-label="Take a photo" title="Take a photo (saved on the Pi)"><svg class="icon"><use href="#i-image"/></svg></button>
+          <button class="icon-btn" id="camWatch" type="button" aria-label="Watch the desk" title="Watch the desk while you are away" aria-pressed="false"><svg class="icon"><use href="#i-eye"/></svg></button>
+          <button class="icon-btn" id="camSnapshot" type="button" aria-label="Save snapshot" title="Save snapshot" disabled><svg class="icon"><use href="#i-aperture"/></svg></button>
+          <button class="icon-btn" id="camPower" type="button" aria-label="Toggle camera" title="Toggle camera" aria-pressed="false"><svg class="icon"><use href="#i-power"/></svg></button>
+        </header>
+        <div class="panel-body">
+          <div class="cam-viewport" id="camViewport" tabindex="0" aria-label="Camera viewport (arrow keys pan and tilt)">
+            <div class="cam-placeholder" id="camPlaceholder"><svg class="icon"><use href="#i-camera-off"/></svg><span>Camera Off</span></div>
+            <img id="camImg" alt="Pi camera stream" hidden>
+            <video id="camVideo" autoplay muted playsinline hidden></video>
+            <div class="dpad" id="camDpad" hidden aria-label="Pan / tilt">
+              <button type="button" data-dir="up" aria-label="Tilt up" title="Tilt up (↑)"><svg class="icon"><use href="#i-chev-up"/></svg></button>
+              <button type="button" data-dir="left" aria-label="Pan left" title="Pan left (←)"><svg class="icon"><use href="#i-chev-left"/></svg></button>
+              <button type="button" data-dir="center" aria-label="Center camera" title="Center"><svg class="icon"><use href="#i-crosshair"/></svg></button>
+              <button type="button" data-dir="right" aria-label="Pan right" title="Pan right (→)"><svg class="icon"><use href="#i-chev-right"/></svg></button>
+              <button type="button" data-dir="down" aria-label="Tilt down" title="Tilt down (↓)"><svg class="icon"><use href="#i-chev-down"/></svg></button>
+            </div>
+          </div>
+          <p class="cam-caption" id="camCaption">Camera is inactive. Click the power button to start.</p>
+          <p class="cam-presence" id="camPresence" hidden></p>
+        </div>
+      </section>
+
+      <section class="panel" id="panelGroove" aria-labelledby="grooveTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-music"/></svg>
+          <h2 id="grooveTitle">Groove</h2>
+          <span class="tag muted" id="grooveTag" title="What the head is doing">off</span>
+          <label class="switch head-switch" title="Vibe to music: when the Pi hears a beat and nobody is talking to Nova, the head bobs along"><input type="checkbox" id="grooveVibe" aria-label="Vibe to music"><i></i></label>
+        </header>
+        <div class="panel-body">
+          <select id="grooveMode" class="select groove-mode" aria-label="Groove mode" title="Vibe to whatever is playing, or use the head as a metronome"><option value="vibe">Vibe to music</option><option value="metronome">Metronome</option></select>
+          <div class="groove-row" id="grooveMetro" hidden>
+            <label class="groove-bpm-wrap" for="grooveBpm"><span>BPM</span><input type="number" id="grooveBpm" class="text-input groove-bpm" min="30" max="240" step="1" value="100" inputmode="numeric" aria-label="Beats per minute" title="Beats per minute (30-240)"></label>
+            <button class="text-btn groove-play" id="groovePlay" type="button" aria-pressed="false" title="Nod on every beat at this tempo"><svg class="icon"><use href="#i-play"/></svg><span id="groovePlayLabel">Play</span></button>
+          </div>
+          <p class="groove-status" id="grooveStatus">—</p>
+        </div>
+      </section>
+
+      <section class="panel" id="panelReminders" aria-labelledby="remindersTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-bell"/></svg>
+          <h2 id="remindersTitle">Reminders</h2>
+          <span class="tag muted" id="remindersTag" title="Pending reminders and timers">0</span>
+          <button class="icon-btn" id="remindersClear" type="button" aria-label="Clear all reminders" title="Clear all" disabled><svg class="icon"><use href="#i-trash"/></svg></button>
+        </header>
+        <div class="panel-body">
+          <ul class="reminders" id="remindersList" aria-live="polite"></ul>
+          <p class="panel-note" id="remindersEmpty">Say "remind me in twenty minutes to…" or "set a timer for five minutes".</p>
+          <form class="reminder-form" id="reminderForm" autocomplete="off">
+            <input type="text" id="reminderInput" class="text-input" placeholder="Remind me at 3:30 to…" aria-label="New reminder" maxlength="200">
+            <button class="icon-btn" type="submit" aria-label="Add reminder" title="Add"><svg class="icon"><use href="#i-plus"/></svg></button>
+          </form>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ============ Center ============ -->
+    <section class="center" id="center" aria-label="Nova">
+      <div class="orb-stage">
+        <canvas id="orb" aria-label="Nova orb"></canvas>
+      </div>
+      <div class="center-wordmark" id="centerWordmark">N.O.V.A</div>
+      <div class="status-pill" id="statusPill" role="status" aria-live="polite" data-state="offline"><span class="dot"></span><span id="statusText">Connecting…</span></div>
+      <div class="interim" id="interim" aria-live="polite"></div>
+      <div class="emotes" id="emoteRow" hidden role="group" aria-label="Ask the robot head to gesture"></div>
+      <div class="center-actions">
+        <button class="sq-btn lg" id="btnCamera" type="button" aria-label="Toggle camera" title="Toggle camera" aria-pressed="false"><svg class="icon"><use href="#i-camera"/></svg></button>
+        <button class="sq-btn lg" id="btnMic" type="button" aria-label="Toggle microphone" title="Toggle microphone" aria-pressed="false"><svg class="icon"><use href="#i-mic"/></svg></button>
+        <button class="sq-btn lg" id="btnKeyboard" type="button" aria-label="Type a message" title="Type a message"><svg class="icon"><use href="#i-keyboard"/></svg></button>
+      </div>
+    </section>
+
+    <!-- ============ Right column ============ -->
+    <aside class="col col-right" id="colRight">
+      <section class="panel panel-chat" aria-labelledby="chatTitle">
+        <header class="panel-head">
+          <svg class="icon"><use href="#i-chat"/></svg>
+          <h2 id="chatTitle">Conversation</h2>
+          <button class="text-btn" id="chatNew" type="button" aria-label="Start a new chat" title="New chat"><svg class="icon"><use href="#i-plus"/></svg><span>New</span></button>
+          <button class="text-btn" id="chatHistory" type="button" aria-label="Show past sessions" aria-pressed="false" title="Past sessions"><svg class="icon"><use href="#i-history"/></svg><span>History</span></button>
+          <button class="text-btn" id="chatExport" type="button" aria-label="Extract conversation as Markdown" title="Extract conversation"><svg class="icon"><use href="#i-download"/></svg><span>Extract Conversation</span></button>
+        </header>
+        <div class="chat-view" id="chatView">
+          <div class="chat-messages" id="chatMessages" aria-live="polite"></div>
+          <form class="composer" id="chatForm" autocomplete="off">
+            <textarea id="chatInput" rows="1" placeholder="Type a message..." aria-label="Message to Nova"></textarea>
+            <button class="attach-btn" id="chatAttach" type="button" aria-label="Attach what the camera sees" title="Attach what the desk camera sees to the next message" aria-pressed="false"><svg class="icon"><use href="#i-camera"/></svg></button>
+            <button class="send-btn" id="chatSend" type="submit" aria-label="Send message" title="Send (Enter)"><svg class="icon i-send"><use href="#i-send"/></svg><svg class="icon i-stop"><use href="#i-stop"/></svg></button>
+          </form>
+        </div>
+        <section class="session-history" id="sessionHistory" hidden aria-label="Past sessions">
+          <header class="session-history-head">
+            <div><strong>Past sessions</strong><span>Stored by Hermes on this Raspberry Pi</span></div>
+            <button class="icon-btn" id="sessionRefresh" type="button" aria-label="Refresh past sessions" title="Refresh"><svg class="icon"><use href="#i-refresh"/></svg></button>
+          </header>
+          <div class="session-list" id="sessionList" aria-live="polite"></div>
+        </section>
+      </section>
+    </aside>
+
+    <button class="edge-tab edge-right" id="edgeRight" type="button" aria-label="Toggle conversation panel" title="Toggle conversation panel"><svg class="icon"><use href="#i-chev-right"/></svg></button>
+
+  </main>
+</div>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+
+<!-- ============ Settings modal ============ -->
+<div class="modal" id="settingsModal" hidden role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <div class="modal-card">
+    <header class="modal-head">
+      <svg class="icon"><use href="#i-gear"/></svg>
+      <h2 id="settingsTitle">Settings</h2>
+      <button class="icon-btn" id="settingsClose" type="button" aria-label="Close settings" title="Close (Esc)"><svg class="icon"><use href="#i-x"/></svg></button>
+    </header>
+    <div class="modal-body">
+
+      <section class="set-group">
+        <h3>Voice</h3>
+        <div class="field"><span class="field-label">Audio device<small>Uses the microphone and speakers of the browser running Nova</small></span>
+          <strong class="mono" id="setAudioDevice">This browser</strong></div>
+        <label class="field"><span class="field-label">Wake word<small>Say "hey Nova …" to talk hands-free</small></span>
+          <span class="switch"><input type="checkbox" id="setWake"><i></i></span></label>
+        <label class="field"><span class="field-label">Wake phrase</span>
+          <input type="text" id="setWakePhrase" class="text-input" maxlength="24" spellcheck="false" placeholder="nova"></label>
+        <label class="field"><span class="field-label">Keep the conversation open<small>After Nova answers, ask follow-ups without saying the wake word again</small></span>
+          <span class="switch"><input type="checkbox" id="setConversation"><i></i></span></label>
+        <label class="field"><span class="field-label">Follow-up window<small>How long Nova keeps listening after she finishes speaking</small></span>
+          <select id="setFollowUp" class="select"><option value="15">15 seconds</option><option value="30">30 seconds</option><option value="60">1 minute</option><option value="0">Until I say "goodbye"</option></select></label>
+        <label class="field"><span class="field-label">Let me interrupt<small>Say "Nova …" or "stop" while she is talking</small></span>
+          <span class="switch"><input type="checkbox" id="setBargeIn"><i></i></span></label>
+        <label class="field"><span class="field-label">Thinking acknowledgements<small>Short spoken fillers so a slow answer is never silent</small></span>
+          <span class="switch"><input type="checkbox" id="setAcks"><i></i></span></label>
+        <label class="field"><span class="field-label">Speak replies<small>Read Nova's replies aloud</small></span>
+          <select id="setSpeak" class="select"><option value="off">Off</option><option value="voice">Voice commands only</option><option value="always">Always</option></select></label>
+      </section>
+
+      <section class="set-group">
+        <h3>Robot head &amp; camera</h3>
+        <label class="field"><span class="field-label">Camera source</span>
+          <select id="setCamSource" class="select"><option value="pi">Raspberry Pi</option><option value="local">This computer</option></select></label>
+        <label class="field"><span class="field-label">Look at me<small>The pan-tilt head finds your face while Nova is listening, and gestures while she thinks</small></span>
+          <span class="switch"><input type="checkbox" id="setFollowMe"><i></i></span></label>
+        <label class="field"><span class="field-label">Expressive gestures<small>Nova nods, looks around and reacts as she speaks; say "Nova, dance" for emotes on demand</small></span>
+          <span class="switch"><input type="checkbox" id="setGestures"><i></i></span></label>
+        <label class="field"><span class="field-label">Answer style<small>Quick replies answer in a second or two; deep work thinks harder and tells you before it goes off to do it</small></span>
+          <select id="setLane" class="select"><option value="auto">Auto — quick chat, deep for real work</option><option value="quick">Always quick</option><option value="deep">Always thorough</option></select></label>
+      </section>
+
+      <section class="set-group">
+        <h3>Desk companion</h3>
+        <label class="field"><span class="field-label">Presence awareness<small>The camera quietly notices when you sit down or leave (a face check every few seconds)</small></span>
+          <span class="switch"><input type="checkbox" id="setPresence"><i></i></span></label>
+        <label class="field"><span class="field-label">Daily briefing on first arrival<small>The first time you sit down each day, Nova runs your briefing (calendar, mail, tasks)</small></span>
+          <span class="switch"><input type="checkbox" id="setBriefing"><i></i></span></label>
+        <label class="field"><span class="field-label">Break reminder<small>After this long at the desk without a break, Nova suggests stretching</small></span>
+          <select id="setBreak" class="select"><option value="0">Off</option><option value="45">45 minutes</option><option value="60">1 hour</option><option value="90">90 minutes</option></select></label>
+        <label class="field"><span class="field-label">Desk watch &amp; reminders to Telegram<small id="setTelegramNote">Uses Nova's Telegram bot on the Pi</small></span>
+          <span class="switch"><input type="checkbox" id="setTelegram"><i></i></span></label>
+        <label class="field"><span class="field-label">Vibe to music<small id="setVibeNote">The Pi's microphone listens for a beat; when music plays and nobody is talking to her, the head bobs along</small></span>
+          <span class="switch"><input type="checkbox" id="setVibe"><i></i></span></label>
+        <label class="field"><span class="field-label">Vibe intensity</span>
+          <select id="setVibeAmp" class="select"><option value="0.6">Subtle</option><option value="1">Normal</option><option value="1.5">Big</option></select></label>
+      </section>
+
+      <section class="set-group">
+        <h3>System</h3>
+        <label class="field"><span class="field-label">Stats source</span>
+          <select id="setStatsSource" class="select"><option value="auto">Auto (Pi when available)</option><option value="pi">Raspberry Pi bridge</option><option value="mac">Dashboard host</option></select></label>
+        <label class="field"><span class="field-label">Orb sensitivity<small>How strongly the orb reacts to the mic</small></span>
+          <span class="range-wrap"><input type="range" id="setSensitivity" min="0.5" max="2" step="0.05" value="1"><b class="mono" id="setSensitivityVal">1.00×</b></span></label>
+        <div class="field"><span class="field-label">Weather unit</span>
+          <span class="seg" id="setUnit" role="radiogroup" aria-label="Weather unit"><button type="button" data-unit="C" role="radio" aria-checked="true">°C</button><button type="button" data-unit="F" role="radio" aria-checked="false">°F</button></span></div>
+      </section>
+
+      <section class="set-group">
+        <h3>Connection</h3>
+        <dl class="conn" id="connInfo">
+          <div><dt>Dashboard</dt><dd class="mono" id="connServer">—</dd></div>
+          <div><dt>Hermes</dt><dd class="mono" id="connHermes">—</dd></div>
+          <div><dt>Pi bridge</dt><dd class="mono" id="connPi">—</dd></div>
+          <div><dt>Host</dt><dd class="mono" id="connHost">—</dd></div>
+        </dl>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
